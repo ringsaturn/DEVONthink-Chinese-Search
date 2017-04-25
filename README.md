@@ -15,6 +15,10 @@
 可选：根据个人需求而定，一般不用，详情见代码<br>
 [thulac](https://github.com/thunlp/THULAC-Python): `pip install thulac`
 
+关于 Python 2.x 的说明：
+
+由于 macOS 的二进制保护限制，直接使用 pip 指定安装模块是不会成功的，所以我没有采用 2.x ，而是采用我能随意使用的 3.x。
+代码（稍作修改？）应该可以在 2.x 下运行，并且 2.x 下的代码有 Alfred 的直接支持，[Alfred 在 macOS 有系统集成 3.x 之前不考虑支持 3.x](http://alfredworkflow.readthedocs.io/en/latest/supported-versions.html#why-no-python-3-support)，我也没办法。
 
 ## 函数说明
 
