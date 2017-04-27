@@ -31,6 +31,18 @@
 - `filter_keywords`：对结巴分词提取出来的关键词进行过滤
 - `get_key_words`：在这个函数里调用上述函数并传递变量
 
+
+## Alfred Workflow
+
+导入后需要讲 `Terminal Command` 中的 `get_key_words.py` 的路径改为你所使用的路径。
+快捷键是 Command+Shift+D ，可以自行修改。
+没有购买 Alfred PowerPack 的，可以把 `Terminal Command` 中的代码添加为文本替换。
+
+```bash
+python3 /Users/[username]/Downloads/get_key_words.py
+osascript -e 'tell app "Terminal" to close front window'
+```
+
 ## 待完成
 
 1. 代码中的 TODO 部分
