@@ -27,7 +27,7 @@ def copy_to_clipboard(keywords,method=','):
 # 这部分根据个人需求修改 2017-04-25 10:27:16
 # 0 → 增加一步清华分词
 # 其他 → 结巴分词直接提取关键词，没有区别
-def cut(content, method=0):
+def cut(content, method=1):
 	if method == 0:
 		import thulac
 		thu1 = thulac.thulac(seg_only=True,filt=True)
@@ -57,7 +57,7 @@ def get_key_words(content):
 	words_num_max = int(text_length/2)
 
 	# 分词
-	words = cut(content)
+	words = cut(content,method=1)
 
 	# 获取关键词
 	keywords = jieba.analyse.extract_tags(words, topK=words_num_max, withWeight=True, allowPOS=( ))
