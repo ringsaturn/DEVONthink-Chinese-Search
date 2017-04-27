@@ -26,7 +26,7 @@
 - `copy_to_clipboard`：keywords 实际上是一个数组，所以输出的的格式应当调整成 Spotlight Comments 的格式，如 采用, 二进制, ......
 - `cut` ：分词。这个⊂个人需求。比如一段文本，容易一起歧义的词汇较多，这时就需要用比较精准的分词方式先把词会分好，在提取关键词。不同的分词方式处理出的结果是不一样的，如图：
 
-![](jieba vs thulac.jpg)
+![](/jieba%20vs%20thulac.jpg)
 
 - `filter_keywords`：对结巴分词提取出来的关键词进行过滤
 - `get_key_words`：在这个函数里调用上述函数并传递变量
