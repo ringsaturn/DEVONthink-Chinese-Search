@@ -43,6 +43,18 @@ python3 /Users/[username]/Downloads/get_key_words.py
 osascript -e 'tell app "Terminal" to close front window'
 ```
 
+2017-05-02 更新
+
+这次更新的 Workflow 更加强大：可以利用 Apple Script 读取打开的笔记内容啦
+
+1. 你只需要手动打开笔记
+2. 激活快捷键
+3. 等程序运行完毕，
+4. 进入 Info 界面，
+5. 将关键词拷贝进去。
+
+脚本会提取出文本拷贝到剪贴板，然后 python 程序进行提取关键词，并将关键词按指定格式拷贝到剪贴板。
+
 ## 待完成
 
 1. 代码中的 TODO 部分
