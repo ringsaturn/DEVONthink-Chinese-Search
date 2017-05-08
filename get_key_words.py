@@ -9,7 +9,7 @@ import re
 # 过滤
 def filter_chinese(text):
 	#r = re.sub("[A-Za-z0-9\[\`\~\!\@\#\$\^\&\*\(\)\=\|\{\}\'\:\;\'\,\[\]\.\<\>\/\?\~\\\！\@\#\\\&\*\%]", "", s)
-	r = re.sub("[A-Za-z0-9\[\`\~\!\@\#\$\^\&\*\(\)\=\|\{\}\'\:\：\。\，\“\“\_\-\”\▃\？\、\/\n\\\─\\;\'\,\[\]\.\<\>\/\?\~\\《\》\）\\\（\\！\@\#\\\&\*\%]", "", text)
+	r = re.sub("[A-Za-z0-9\[\`\~\!\@\#\$\^\&\*\(\)\=\|\{\}\'\:\：\。\，\“\“\_\-\”\▃\？\、\/n\─\;\'\,\[\]\.\<\>\/\?\~\\《\》\）\\\（\\！\@\#\\\&\*\%]", "", text)
 	r = r.replace(' ', '')
 	return r
 
@@ -41,9 +41,26 @@ def cut(content, method=1):
 # 参数可更改
 def filter_keywords(keywords):
 	final_keywords = []
+	loop_times = len(keywords)
+	#print(loop_times)
+	#print(keywords)
+	
+	count = 0
+	bias = 0
+	for words in keywords:
+		if count+4 <= len(keywords)/2:
+			k = -(keywords[count+4][1]-words[1])/3
+			if k < 0.003:
+				bias = words[1]
+				print(bias)
+				break
+				
+		count = count + 4
+				
 	for item in keywords:
-		if item[1]>0.01:
-			final_keywords.append(item[0])
+		if item[1]>bias:
+			final_keywords.append(item[1])
+			print(item[0],item[1])
 	return final_keywords
 
 
