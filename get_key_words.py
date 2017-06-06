@@ -44,7 +44,7 @@ def filter_keywords(keywords):
 	loop_times = len(keywords)
 	#print(loop_times)
 	#print(keywords)
-	
+
 	count = 0
 	bias = 0
 	for words in keywords:
@@ -54,9 +54,9 @@ def filter_keywords(keywords):
 				bias = words[1]
 				print(bias)
 				break
-				
+
 		count = count + 4
-				
+
 	for item in keywords:
 		if item[1]>bias:
 			final_keywords.append(item[1])
