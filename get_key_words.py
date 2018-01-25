@@ -59,7 +59,7 @@ def filter_keywords(keywords):
 
 	for item in keywords:
 		if item[1]>bias:
-			final_keywords.append(item[1])
+			final_keywords.append(item[0])
 			print(item[0],item[1])
 	return final_keywords
 
