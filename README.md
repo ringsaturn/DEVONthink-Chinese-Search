@@ -47,6 +47,13 @@ python3 /Users/[username]/Downloads/get_key_words.py
 osascript -e 'tell app "Terminal" to close front window'
 ```
 
+如果默认使用 iTerm 作为终端的话。则 Apple Script 部分要做适当的修改
+
+```bash
+python3 /Users/[username]/Downloads/get_key_words.py
+osascript -e 'tell app "iTerm2" to close front window'
+```
+
 2017-05-02 更新
 
 这次更新的 Workflow 更加强大：可以利用 Apple Script 读取打开的笔记内容啦
