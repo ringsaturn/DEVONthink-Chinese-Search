@@ -6,6 +6,10 @@
 2. 运行程序
 3. 在相应笔记的 Spotlight Comments 处粘贴剪贴板内容（可以通过 Command+Shift+I 打开）
 
+## 原理
+
+调用结巴分词从文本中提取关键词，详情：[fxsjy/jieba: 结巴中文分词](https://github.com/fxsjy/jieba)
+
 ## 依赖
 
 1.python 3.x<br>
