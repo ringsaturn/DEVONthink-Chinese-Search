@@ -63,7 +63,7 @@ def get_key_words(content):
     # 冲洗字符串，只留下汉字
     content = filter_chinese(content)
 
-    # 假设单词平均长度2 估计最多有多少词，
+    # 假设单词平均长度 1.5 估计最多有多少词，
     text_length = len(content)
     words_num_max = int(text_length / 1.5)
 
