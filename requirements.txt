@@ -1,0 +1,4 @@
+thulac==0.1.2
+jieba==0.38
+pyperclip==1.5.27
+Flask==0.12.2

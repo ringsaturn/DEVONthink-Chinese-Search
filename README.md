@@ -1,72 +1,79 @@
-# Devonthink 中文索引生成程序说明
+Devonthink 中文索引生成程序
+===
 
-## 用法
+<!-- TOC -->
 
-1. 复制笔记内容（有图片，英文，等都可以，反正会被过滤掉）
-2. 运行程序
-3. 在相应笔记的 Spotlight Comments 处粘贴剪贴板内容（可以通过 Command+Shift+I 打开）
+- [原理](#原理)
+- [安装及准备工作](#安装及准备工作)
+    - [准备后台服务](#准备后台服务)
+    - [准备前台服务 Alfred Workflow](#准备前台服务-alfred-workflow)
+        - [关于 Python 2.X 的说明](#关于-python-2x-的说明)
+- [重要更新记录](#重要更新记录)
+- [待完成](#待完成)
+
+<!-- /TOC -->
 
 ## 原理
 
-调用结巴分词从文本中提取关键词，详情：[fxsjy/jieba: 结巴中文分词](https://github.com/fxsjy/jieba)
+一句话解释：调用结巴分词从文本中提取关键词，详情：[fxsjy/jieba: 结巴中文分词](https://github.com/fxsjy/jieba)
 
-## 依赖
+* 初始化后台服务: 运行一个小型服务器，提供基于[结巴分词]((https://github.com/fxsjy/jieba))的关键词提取 API
+* 复制笔记内容
+* 前台调用 API 并把结果返回到剪贴板
+* 在相应笔记的 Spotlight Comments 处粘贴剪贴板内容（可以通过 `Command+Shift+I` 打开）
 
-1.python 3.x<br>
-2.[结巴分词](https://github.com/fxsjy/jieba): `pip3 install jieba` <br>
-3.[pyperclip](https://github.com/asweigart/pyperclip): `pip3 install pyperclip`<br>
 
-可选：根据个人需求而定，一般不用，详情见代码<br>
-[thulac](https://github.com/thunlp/THULAC-Python): `pip install thulac`
+## 安装及准备工作
 
-关于 Python 2.x 的说明：
+<!--生成: `pipreqs . `-->
+
+### 准备后台服务
+
+以下命令都需要在项目目录下终端中执行
+
+```bash
+cd [Devonthink-Chinese-Search 路径]
+
+# 安装依赖
+pip3 install -r requirements.txt
+
+# 启动服务器
+# 默认使用 5050 端口
+# 重启/注销后需要再次执行这个命令
+screen python3 AnalyzeKeyWordsAPI/Server.py
+```
+
+### 准备前台服务 Alfred Workflow
+
+*  导入后需要讲 `Terminal Command` 中的 `get_key_words.py` 的路径改为你所使用的路径
+* 快捷键需要自定义
+* 没有购买 Alfred PowerPack 的，可以把 `Terminal Command` 中的代码添加为文本替换。
+
+```bash
+python3 [path]/DEVONthink-Chinese-Search/get_key_words.py
+osascript -e 'tell app "Terminal" to close front window'
+```
+
+如果默认使用 iTerm 作为终端的话，则 Apple Script 部分要做适当的修改
+
+```bash
+python3 [path]/DEVONthink-Chinese-Search/get_key_words.py
+osascript -e 'tell app "iTerm2" to close front window'
+```
+
+#### 关于 Python 2.X 的说明
 
 由于 macOS 的二进制保护限制，直接使用 pip 指定安装模块是不会成功的，所以我没有采用 2.x ，而是采用我能随意使用的 3.x。
 代码（稍作修改？）应该可以在 2.x 下运行，并且 2.x 下的代码有 Alfred 的直接支持，[Alfred 在 macOS 有系统集成 3.x 之前不考虑支持 3.x](http://alfredworkflow.readthedocs.io/en/latest/supported-versions.html#why-no-python-3-support)，我也没办法。
 
-## 函数说明
 
-- `filter_chinese` 对输入的字符串，除掉英文字母，数字，空格，换行
-- `copy_to_clipboard`：keywords 实际上是一个数组，所以输出的的格式应当调整成 Spotlight Comments 的格式，如 采用, 二进制, ......
-- `cut` ：分词。这个⊂个人需求。比如一段文本，容易一起歧义的词汇较多，这时就需要用比较精准的分词方式先把词会分好，再提取关键词。不同的分词方式处理出的结果是不一样的，如图：
+## 重要更新记录
 
-![](/jieba%20vs%20thulac.jpg)
+> 2018-01-31 更新
 
-- `filter_keywords`：对结巴分词提取出来的关键词进行过滤
-- `get_key_words`：在这个函数里调用上述函数并传递变量
-
-
-## Alfred Workflow
-
-导入后需要讲 `Terminal Command` 中的 `get_key_words.py` 的路径改为你所使用的路径。
-快捷键是 Command+Shift+D ，可以自行修改。
-没有购买 Alfred PowerPack 的，可以把 `Terminal Command` 中的代码添加为文本替换。
-
-```bash
-python3 /Users/[username]/Downloads/get_key_words.py
-osascript -e 'tell app "Terminal" to close front window'
-```
-
-如果默认使用 iTerm 作为终端的话。则 Apple Script 部分要做适当的修改
-
-```bash
-python3 /Users/[username]/Downloads/get_key_words.py
-osascript -e 'tell app "iTerm2" to close front window'
-```
-
-2017-05-02 更新
-
-这次更新的 Workflow 更加强大：可以利用 Apple Script 读取打开的笔记内容啦
-
-1. 你只需要手动打开笔记
-2. 激活快捷键
-3. 等程序运行完毕，
-4. 进入 Info 界面，
-5. 将关键词拷贝进去。
-
-脚本会提取出文本拷贝到剪贴板，然后 python 程序进行提取关键词，并将关键词按指定格式拷贝到剪贴板。
+2.0 更新啦
+实现了一个简单的 POST 接口，通过后台运行一个小型服务器，大幅降低提取关键词耗时（主要是结巴分词初始化耗时）
 
 ## 待完成
 
-1. 代码中的 TODO 部分
-2. 发布到 pip 中方便使用
+- [ ] 简化安装工作
