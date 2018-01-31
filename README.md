@@ -26,7 +26,7 @@ Devonthink 中文索引生成程序
 
 ### 准备后台服务
 <!--生成: `pipreqs . `-->
-所有路径均默认在用户的根目录下 如果在 `git clone` 这一步是在别的路径下执行的，则需要手动修改 Alfred Workflow 的相应的路径
+所有路径均默认在用户的根目录下
 
 ```bash
 git clone https://github.com/ringsaturn/DEVONthink-Chinese-Search
