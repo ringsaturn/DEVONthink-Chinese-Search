@@ -1,8 +1,6 @@
 欢迎帮助完善 DEVONthink-Chinese-Search
 ---
 
-[TOC]
-
 # 未来的期待
 
 * 有更好的交互方式
