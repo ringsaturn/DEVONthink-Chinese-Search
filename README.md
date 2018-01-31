@@ -38,8 +38,8 @@ cd [Devonthink-Chinese-Search 路径]
 pip3 install -r requirements.txt
 
 # 启动服务器
-# 默认使用 5050 端口
-# 重启/注销后需要再次执行这个命令
+# 默认使用 5050 端口
+# 重启/注销后需要再次执行这个命令
 screen python3 AnalyzeKeyWordsAPI/Server.py
 ```
 
