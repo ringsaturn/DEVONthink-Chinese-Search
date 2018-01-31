@@ -29,10 +29,12 @@ Devonthink 中文索引生成程序
 
 ### 准备后台服务
 
-以下命令都需要在项目目录下终端中执行
+所有路径均默认在用户的根目录下 如果在 `git clone` 这一步是在别的路径下执行的，则需要手动修改 Alfred Workflow 的相应的路径
 
 ```bash
-cd [Devonthink-Chinese-Search 路径]
+git clone https://github.com/ringsaturn/DEVONthink-Chinese-Search
+
+cd DEVONthink-Chinese-Search
 
 # 安装依赖
 pip3 install -r requirements.txt
@@ -45,19 +47,20 @@ screen python3 AnalyzeKeyWordsAPI/Server.py
 
 ### 准备前台服务 Alfred Workflow
 
-*  导入后需要讲 `Terminal Command` 中的 `get_key_words.py` 的路径改为你所使用的路径
+
+
 * 快捷键需要自定义
 * 没有购买 Alfred PowerPack 的，可以把 `Terminal Command` 中的代码添加为文本替换。
 
 ```bash
-python3 [path]/DEVONthink-Chinese-Search/get_key_words.py
+python3 ~/DEVONthink-Chinese-Search/get_key_words.py
 osascript -e 'tell app "Terminal" to close front window'
 ```
 
 如果默认使用 iTerm 作为终端的话，则 Apple Script 部分要做适当的修改
 
 ```bash
-python3 [path]/DEVONthink-Chinese-Search/get_key_words.py
+python3 ~/DEVONthink-Chinese-Search/get_key_words.py
 osascript -e 'tell app "iTerm2" to close front window'
 ```
 
@@ -77,3 +80,5 @@ osascript -e 'tell app "iTerm2" to close front window'
 ## 待完成
 
 - [ ] 简化安装工作
+
+
