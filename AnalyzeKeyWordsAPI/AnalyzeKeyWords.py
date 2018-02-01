@@ -5,6 +5,7 @@
 import re
 
 import jieba.analyse
+import pyperclip
 
 
 def filter_chinese(text):
@@ -58,8 +59,10 @@ def filter_keywords(keywords):
     return final_keywords
 
 
-def get_key_words(content):
+def get_key_words(content='', back_ground=False):
     """get_key_words"""
+    if back_ground:
+        content = str(pyperclip.paste())
     # 冲洗字符串，只留下汉字
     content = filter_chinese(content)
 
@@ -83,8 +86,9 @@ def get_key_words(content):
     final_keywords = str(final_keywords).replace(']', '')
     # print(final_keywords)
 
-    # 拷贝到剪贴板
-    # pyperclip.copy(final_keywords)
+    if back_ground:
+        # 拷贝到剪贴板
+        pyperclip.copy(final_keywords)
     return final_keywords
 
 # if __name__ == '__main__':
