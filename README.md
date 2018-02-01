@@ -3,20 +3,15 @@ Devonthink 中文索引生成程序 后台剪贴板分支
 
 <!-- TOC -->
 
-- [关于这个分支](#关于这个分支)
 - [原理](#原理)
 - [安装及准备工作](#安装及准备工作)
     - [准备后台服务](#准备后台服务)
     - [准备前台服务 Alfred Workflow](#准备前台服务-alfred-workflow)
 - [重要更新记录](#重要更新记录)
+- [其他](#其他)
 - [待完成](#待完成)
 
 <!-- /TOC -->
-
-## 关于这个分支
-
-这个分支的实现效果是：服务器端收到请求即会调用提取关键词服务，从服务器所在的系统提取关键词
-
 
 ## 原理
 
@@ -51,7 +46,7 @@ screen python3 AnalyzeKeyWordsAPI/Server.py
 
 ### 准备前台服务 Alfred Workflow
 
-* 快捷键需要自定义
+推将使用 `get keywords 后台模式.alfredworkflow`
 
 ## 重要更新记录
 
@@ -64,6 +59,17 @@ screen python3 AnalyzeKeyWordsAPI/Server.py
 
 2.1 更新啦
 利用 shell 脚本和 cURL 实现了一个更好的获取请求速度
+
+> 2018-02-01 更新
+
+2.2 更新啦
+增加一个后台功能，在后台读取剪贴板内容并把关键词粘贴回剪贴板
+
+## 其他
+
+* 如果想提建议，发 issues 即可
+* 如果向帮助改进/增加其他的入口，还请移步 [CONTRIBUTING](https://github.com/ringsaturn/DEVONthink-Chinese-Search/blob/master/CONTRIBUTING.md) 了解具体的参数
+* 也欢迎发邮件 ringsaturn.me@gmail.com
 
 ## 待完成
 
