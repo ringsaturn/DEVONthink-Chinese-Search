@@ -15,7 +15,9 @@ DEVONthink 中文索引生成程序
 
 ## 原理
 
-一句话解释：调用结巴分词从文本中提取关键词，详情：[fxsjy/jieba: 结巴中文分词](https://github.com/fxsjy/jieba)
+一句话解释：调用结巴分词从文本中提取关键词，并手动把关键词填入 Comments 中
+
+结巴分词详情：[fxsjy/jieba: 结巴中文分词](https://github.com/fxsjy/jieba)
 
 * 初始化后台服务: 运行一个小型服务器，提供基于[结巴分词]((https://github.com/fxsjy/jieba))的关键词提取 API
 * 复制笔记内容
