@@ -1,10 +1,26 @@
 欢迎帮助完善 DEVONthink-Chinese-Search
----
+===
+
+<!-- TOC -->
+
+- [未来的期待](#未来的期待)
+- [整体架构](#整体架构)
+- [后台](#后台)
+- [前台 API 调用](#前台-api-调用)
+    - [后台模式](#后台模式)
+        - [后台模式 范例](#后台模式-范例)
+    - [API 模式](#api-模式)
+        - [API 模式 范例](#api-模式-范例)
+        - [请求参数](#请求参数)
+            - [Header Parameters](#header-parameters)
+            - [Body Parameters](#body-parameters)
+
+<!-- /TOC -->
 
 # 未来的期待
 
 * 有更好的交互方式
-* 和 Apple Script 联动，做到能批量读取笔记内容并添加索引 
+* 和 Apple Script 联动，做到能批量读取笔记内容并添加索引
 * 尝试用 JavaScript 实现 DEVONthink 的脚本，方便没有 Alfred 的用户使用
 * 更好的 Shell 脚本
 * 更好的提取关键词算法
@@ -13,9 +29,13 @@
 
 # 整体架构
 
-我考虑过在后台部署一个服务，使用时发出一个特定的请求，自动获取剪贴板并把关键词粘贴到剪贴板中，但是这样做的实现方式与逻辑我没有想好，所以就使用了中规中矩的 API 调用的办法
+后台提供解析 + 前台发出请求
 
-API 使用 POST 是考虑到我的部分笔记文字数量大，用 GET 就容易超出限制
+前台调用有两种工作模式
+
+- [后台模式](#后台模式)
+- [API 模式](#api-模式)
+
 
 # 后台
 
@@ -25,7 +45,60 @@ Flask 架起的服务，在 [`AnalyzeKeyWordsAPI/Server.py`](https://github.com/
 
 # 前台 API 调用
 
-## cURL + Python 3范例
+前台调用有两种模式
+
+* 后台模式：服务端调用本地剪贴板（需要服务端和用户端都在同一台电脑上）
+* API 模式：通过 API 传递内容
+
+## 后台模式
+
+后台模式只需要在 POST 时，在 Body 部分 `back_ground` 值为 0
+
+```
+{
+    "back_ground": 0
+}
+```
+
+### 后台模式 范例
+
+在这个模式下，向服务端发出请求即可以调用剪贴板
+
+由 Paw 生成如下代码
+
+Python 3
+```python
+
+import requests
+import json
+
+response = requests.post(
+            url="http://127.0.0.1:5050/get_key_words",
+            headers={
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            data=json.dumps({
+                "back_ground": 0
+            })
+        )
+
+```
+
+cURL
+
+```sh
+## Request
+# 基于结巴分词的关键词提取服务器 API 请求
+curl -X "POST" "http://127.0.0.1:5050/get_key_words" \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+  "back_ground": 0
+}'
+```
+
+## API 模式
+
+### API 模式 范例
 
 Python 3
 
@@ -70,11 +143,12 @@ curl -H "Content-Type: application/json" -X POST -d '{"notes_content":"'""$notes
 
 Shell 脚本这块我并不熟练只能说写出了一个马马虎虎能用的实现方式
 
-## 请求参数
+
+### 请求参数
 
 本部分由 Paw 生成
 
-### Header Parameters
+#### Header Parameters
 
 - **Content-Type** should respect the following schema:
 
@@ -88,7 +162,7 @@ Shell 脚本这块我并不熟练只能说写出了一个马马虎虎能用的�
 }
 ```
 
-### Body Parameters
+#### Body Parameters
 
 - **body** should respect the following schema:
 

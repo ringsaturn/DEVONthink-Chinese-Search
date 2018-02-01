@@ -9,7 +9,7 @@ import json
 import pyperclip as clip
 import requests
 
-def get_from_api(notes_content):
+def get_from_api(notes_content='', back_ground_clip=False):
     """get keywords from API"""
     # Generate by Paw
     keywords = requests.post(
