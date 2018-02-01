@@ -31,7 +31,7 @@
 
 后台提供解析 + 前台发出请求
 
-前台调用有两种工作模式
+前台调用有两种工作模式
 
 - [后台模式](#后台模式)
 - [API 模式](#api-模式)
@@ -52,7 +52,7 @@ Flask 架起的服务，在 [`AnalyzeKeyWordsAPI/Server.py`](https://github.com/
 
 ## 后台模式
 
-后台模式只需要在 POST 时，在 Body 部分 `back_ground` 值为 0
+后台模式只需要在 POST 时，在 Body 部分 `back_ground` 值为 0
 
 ```
 {
