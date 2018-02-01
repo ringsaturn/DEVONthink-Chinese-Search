@@ -1,4 +1,4 @@
-Devonthink 中文索引生成程序 后台剪贴板分支
+Devonthink 中文索引生成程序
 ===
 
 <!-- TOC -->
