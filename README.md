@@ -48,7 +48,7 @@ screen python3 AnalyzeKeyWordsAPI/Server.py
 
 ### 准备前台服务 Alfred Workflow
 
-推将使用 `get keywords 后台模式.alfredworkflow`
+推将使用 [`get keywords 后台模式.alfredworkflow`](https://github.com/ringsaturn/DEVONthink-Chinese-Search/raw/master/Alfred%20Workflow/get%20keywords%20后台模式.alfredworkflow)
 
 ## 重要更新记录
 
