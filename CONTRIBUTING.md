@@ -1,7 +1,5 @@
----
-title: "欢迎帮助完善 DEVONthink-Chinese-Search"
-layout: post
----
+欢迎帮助完善 DEVONthink-Chinese-Search
+===
 
 <!-- TOC -->
 
