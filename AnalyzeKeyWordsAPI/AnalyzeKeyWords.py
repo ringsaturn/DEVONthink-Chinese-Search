@@ -5,7 +5,10 @@
 import re
 
 import jieba.analyse
+import jieba
 import pyperclip
+
+from collections import Counter
 
 
 def filter_chinese(text):
@@ -85,11 +88,12 @@ def get_key_words(content='', back_ground=False):
     final_keywords = str(final_keywords).replace('[', '')
     final_keywords = str(final_keywords).replace(']', '')
     # print(final_keywords)
-
+    
+    searchable = list(dict(Counter(list(jieba.cut_for_search(final_keywords)))).keys())
     if back_ground:
         # 拷贝到剪贴板
-        pyperclip.copy(final_keywords)
-    return final_keywords
+        pyperclip.copy(','.join(searchable))
+    return ','.join(searchable)
 
 # if __name__ == '__main__':
 #   content = str(pyperclip.paste())
