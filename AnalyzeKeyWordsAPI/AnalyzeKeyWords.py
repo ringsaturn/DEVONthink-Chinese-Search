@@ -82,14 +82,12 @@ def get_key_words(content='', back_ground=False):
 
     # 对关键词进行筛选
     final_keywords = filter_keywords(keywords)
+    print('solution')
+    print(';'.join(final_keywords))
+    final_keywords = ';'.join(final_keywords)
 
-    # 去除无用的符号
-    final_keywords = str(final_keywords).replace('\'', '')
-    final_keywords = str(final_keywords).replace('[', '')
-    final_keywords = str(final_keywords).replace(']', '')
-    # print(final_keywords)
-    
     searchable = list(dict(Counter(list(jieba.cut_for_search(final_keywords)))).keys())
+    searchable.remove(';')
     if back_ground:
         # 拷贝到剪贴板
         pyperclip.copy(','.join(searchable))
