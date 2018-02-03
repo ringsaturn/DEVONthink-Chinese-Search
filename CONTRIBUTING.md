@@ -1,6 +1,6 @@
 ---
 title: "欢迎帮助完善 DEVONthink-Chinese-Search"
-layout: page
+layout: post
 ---
 
 <!-- TOC -->
