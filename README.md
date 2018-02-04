@@ -46,7 +46,7 @@ DEVONthink 的索引文件是一个个形如 `......-126376F59F4F.dtp2` 的文�
 * 前台调用 API 并把结果返回到剪贴板
 * 在相应笔记的 Spotlight Comments 处粘贴剪贴板内容（可以通过 `Command+Shift+I` 打开）
 
-需要注意的是，程序默认提取的关键词都是名词，如果有别的需要，则需要修改[对应部分](https://github.com/ringsaturn/DEVONthink-Chinese-Search/blob/master/AnalyzeKeyWordsAPI/AnalyzeKeyWords.py#L75)的词性
+需要注意的是，程序默认提取的关键词都是名词，如果有别的需要，则需要修改[对应部分](https://github.com/ringsaturn/DEVONthink-Chinese-Search/blob/master/AnalyzeKeyWordsAPI/AnalyzeKeyWords.py#L81)的词性
 
 ## 安装及准备工作
 
