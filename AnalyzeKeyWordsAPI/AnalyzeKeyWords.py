@@ -3,12 +3,11 @@
 #! /usr/local/bin/python3
 
 import re
-
-import jieba.analyse
-import jieba
-import pyperclip
-
 from collections import Counter
+
+import jieba
+import jieba.posseg as pseg
+import pyperclip
 
 
 def filter_chinese(text):
@@ -61,6 +60,16 @@ def filter_keywords(keywords):
             print(item[0], item[1])
     return final_keywords
 
+def analyse(input_str):
+    """output kws"""
+    kws = []
+    for pair in pseg.cut(input_str):
+        pair = list(pair)
+        if 'n' in str(pair[-1]):
+            kws.append(pair[0])
+    kws = ' '.join(kws)
+    kws = jieba.lcut_for_search(kws)
+    return kws
 
 def get_key_words(content='', back_ground=False):
     """get_key_words"""
@@ -68,30 +77,15 @@ def get_key_words(content='', back_ground=False):
         content = str(pyperclip.paste())
     # 冲洗字符串，只留下汉字
     content = filter_chinese(content)
-
-    # 假设单词平均长度 1.5 估计最多有多少词，
-    text_length = len(content)
-    words_num_max = int(text_length / 1.5)
-
-    # 分词
-    words = cut(content, method=1)
-
-    # 获取关键词: textrank or extract_tags
-    keywords = jieba.analyse.textrank(words, topK=words_num_max, withWeight=True, allowPOS=(
-        'n', 'nr', 'nr1', 'nr2', 'nrj', 'nrf', 'ns', 'nsf', 'nt', 'nz', 'nl', 'ng'))
-
-    # 对关键词进行筛选
-    final_keywords = filter_keywords(keywords)
-    print('solution')
-    print(';'.join(final_keywords))
-    final_keywords = ';'.join(final_keywords)
-
-    searchable = list(dict(Counter(list(jieba.cut_for_search(final_keywords)))).keys())
-    searchable.remove(';')
+    searchable = analyse(content)
+    searchable = list(dict(Counter(list(searchable))).keys())
+    searchable = ','.join(searchable)
+    if ', ,' in searchable:
+        searchable = searchable.replace(', ,', ',')
     if back_ground:
         # 拷贝到剪贴板
-        pyperclip.copy(','.join(searchable))
-    return ','.join(searchable)
+        pyperclip.copy(searchable)
+    return searchable
 
 # if __name__ == '__main__':
 #   content = str(pyperclip.paste())

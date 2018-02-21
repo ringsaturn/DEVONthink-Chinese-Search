@@ -2,3 +2,5 @@
 AnalyzeKeyWordsAPI/__pycache__/AnalyzeKeyWords.cpython-36.pyc
 
 AnalyzeKeyWordsAPI/dev.py
+
+*.pyc
