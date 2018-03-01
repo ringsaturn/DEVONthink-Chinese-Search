@@ -101,7 +101,9 @@ screen python3 AnalyzeKeyWordsAPI/Server.py
 ----
 **2018-02-21 更新 2.3b**
 
-从 2.3 开始，提取关键词流程做了改变
+`测试功能，2.3 中已取消`
+
+从 2.3b 开始，提取关键词流程做了改变
 
 - 输入文本整体进行分词并标注词性
 - 过滤出名词词性
@@ -116,7 +118,7 @@ screen python3 AnalyzeKeyWordsAPI/Server.py
 
 - 移除搜索引擎模式
     - 如果有一天找到了直接修改 DEVONthink 索引文件的方法就直接修改索引文件了
-    - Spotlight Comments 应当留给自己做一些备忘性质的记录。使用搜索引擎模式太乱了
+    - Spotlight Comments 应当留给自己做一些备忘性质的记录。使用搜索引擎模式太乱了
 - 修复词性过滤问题，默认过滤出：
     - nr 人名
     - ns 地名
