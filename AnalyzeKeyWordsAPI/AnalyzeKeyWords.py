@@ -5,7 +5,6 @@
 import re
 from collections import Counter
 
-import jieba
 import jieba.posseg as pseg
 import pyperclip
 
@@ -60,15 +59,28 @@ def filter_keywords(keywords):
             print(item[0], item[1])
     return final_keywords
 
+def ifin(noun_list, input_str):
+    """判断词性是否是目标词性"""
+    symbol = 1
+    for item in noun_list:
+        if item in input_str:
+            symbol = symbol*0
+    # if symbol = 0:
+    return not bool(symbol)
+
 def analyse(input_str):
     """output kws"""
     kws = []
+    # 在这里修改词性
+    noun = ['nr', 'ns', 'nt', 'nz']
     for pair in pseg.cut(input_str):
         pair = list(pair)
-        if 'n' in str(pair[-1]):
+        # if 'n' in str(pair[-1]):
+        if ifin(noun, pair[-1]):
+            # print(pair[-1])
             kws.append(pair[0])
-    kws = ' '.join(kws)
-    kws = jieba.lcut_for_search(kws)
+    # kws = ','.join(kws)
+    # kws = jieba.lcut_for_search(kws)
     return kws
 
 def get_key_words(content='', back_ground=False):
@@ -77,8 +89,16 @@ def get_key_words(content='', back_ground=False):
         content = str(pyperclip.paste())
     # 冲洗字符串，只留下汉字
     content = filter_chinese(content)
+    # print(content)
     searchable = analyse(content)
     searchable = list(dict(Counter(list(searchable))).keys())
+
+    final_kws = []
+    for item in searchable:
+        if len(item) >= 2:
+            # print(item)
+            final_kws.append(item)
+    searchable = list(final_kws)
     searchable = ','.join(searchable)
     if ', ,' in searchable:
         searchable = searchable.replace(', ,', ',')
