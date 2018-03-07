@@ -39,9 +39,9 @@
 
 # 后台
 
-Flask 架起的服务，在 [`AnalyzeKeywordsAPI/Server.py`](https://github.com/ringsaturn/DEVONthink-Chinese-Search/blob/master/AnalyzeKeywordsAPI/Server.py) 中
+Flask 架起的服务，在 [`AnalyzeKeyWordsAPI/Server.py`](https://github.com/ringsaturn/DEVONthink-Chinese-Search/blob/master/AnalyzeKeyWordsAPI/Server.py) 中
 
-调用 [提取关键词](https://github.com/ringsaturn/DEVONthink-Chinese-Search/blob/master/AnalyzeKeywordsAPI/AnalyzeKeywords.py) 基于结巴分词的 `jieba.analyse` 模块，函数及说明请参见代码
+调用 [提取关键词](https://github.com/ringsaturn/DEVONthink-Chinese-Search/blob/master/AnalyzeKeyWordsAPI/AnalyzeKeywords.py) 基于结巴分词的 `jieba.analyse` 模块，函数及说明请参见代码
 
 # 前台 API 调用
 
