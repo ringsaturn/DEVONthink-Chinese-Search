@@ -83,8 +83,8 @@ def analyse(input_str):
     # kws = jieba.lcut_for_search(kws)
     return kws
 
-def get_key_words(content='', back_ground=False):
-    """get_key_words"""
+def get_keywords(content='', back_ground=False):
+    """get_keywords"""
     if back_ground:
         content = str(pyperclip.paste())
     # 冲洗字符串，只留下汉字
@@ -109,4 +109,4 @@ def get_key_words(content='', back_ground=False):
 
 # if __name__ == '__main__':
 #   content = str(pyperclip.paste())
-#   get_key_words(content)
+#   get_keywords(content)
