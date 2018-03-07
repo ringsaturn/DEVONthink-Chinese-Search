@@ -39,9 +39,9 @@
 
 # 后台
 
-Flask 架起的服务，在 [`AnalyzeKeyWordsAPI/Server.py`](https://github.com/ringsaturn/DEVONthink-Chinese-Search/blob/master/AnalyzeKeyWordsAPI/Server.py) 中
+Flask 架起的服务，在 [`AnalyzeKeywordsAPI/Server.py`](https://github.com/ringsaturn/DEVONthink-Chinese-Search/blob/master/AnalyzeKeywordsAPI/Server.py) 中
 
-调用 [提取关键词](https://github.com/ringsaturn/DEVONthink-Chinese-Search/blob/master/AnalyzeKeyWordsAPI/AnalyzeKeyWords.py) 基于结巴分词的 `jieba.analyse` 模块，函数及说明请参见代码
+调用 [提取关键词](https://github.com/ringsaturn/DEVONthink-Chinese-Search/blob/master/AnalyzeKeywordsAPI/AnalyzeKeywords.py) 基于结巴分词的 `jieba.analyse` 模块，函数及说明请参见代码
 
 # 前台 API 调用
 
@@ -52,11 +52,11 @@ Flask 架起的服务，在 [`AnalyzeKeyWordsAPI/Server.py`](https://github.com/
 
 ## 后台模式
 
-后台模式只需要在 POST 时，在 Body 部分 `back_ground` 值为 0
+后台模式只需要在 POST 时，在 Body 部分 `back_ground` 值为 `True`
 
-```
+```python
 {
-    "back_ground": 0
+    "back_ground": True
 }
 ```
 
@@ -67,18 +67,19 @@ Flask 架起的服务，在 [`AnalyzeKeyWordsAPI/Server.py`](https://github.com/
 由 Paw 生成如下代码
 
 Python 3
+
 ```python
 
 import requests
 import json
 
 response = requests.post(
-            url="http://127.0.0.1:5050/get_key_words",
+            url="http://127.0.0.1:5050/get_keywords",
             headers={
                 "Content-Type": "application/json; charset=utf-8",
             },
             data=json.dumps({
-                "back_ground": 0
+                "back_ground": True
             })
         )
 
@@ -89,10 +90,10 @@ cURL
 ```sh
 ## Request
 # 基于结巴分词的关键词提取服务器 API 请求
-curl -X "POST" "http://127.0.0.1:5050/get_key_words" \
+curl -X "POST" "http://127.0.0.1:5050/get_keywords" \
      -H 'Content-Type: application/json; charset=utf-8' \
      -d $'{
-  "back_ground": 0
+  "back_ground": True
 }'
 ```
 
@@ -115,7 +116,7 @@ def get_from_api(notes_content):
     """get keywords from API"""
     # Generate by Paw
     keywords = requests.post(
-        url="http://127.0.0.1:5050/get_key_words",
+        url="http://127.0.0.1:5050/get_keywords",
         headers={
             "Content-Type": "application/json; charset=utf-8",
         },
@@ -138,7 +139,7 @@ notes_content=${notes_content// /.}
 notes_content=${notes_content//\"/.}
 post_data="${notes_content}"
 echo "$post_data"
-curl -H "Content-Type: application/json" -X POST -d '{"notes_content":"'""$notes_content""'"}' http://127.0.0.1:5050/get_key_words | pbcopy
+curl -H "Content-Type: application/json" -X POST -d '{"notes_content":"'""$notes_content""'"}' http://127.0.0.1:5050/get_keywords | pbcopy
 ```
 
 Shell 脚本这块我并不熟练只能说写出了一个马马虎虎能用的实现方式
