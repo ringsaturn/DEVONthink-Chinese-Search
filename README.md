@@ -19,6 +19,11 @@ DEVONthink 中文索引生成程序
 
 这个方法并不能解决 DEVONthink 面对中文文本时孱弱的语义理解能力，只能做到**改善** DEVONthink 的索引能力
 
+- 更加优雅的 macOS 上的解决方式参见 [DEVONthink search | Packal](http://www.packal.org/workflow/devonthink-search)
+- 如果希望 DEVONthink To Go 客户端上也有比较完整的索引，可以通过本脚本在 macOS 上得到关键词，同步到移动设备后供 To Go 索引
+- 本脚本提供的方法比较笨重，在此提供一个在 iOS 上的轻巧的替代方法：用 JSBox 的分词功能
+- 如果上述的替代的方法都不能满足您的要求，那么可以试试本脚本
+
 ## 原理
 
 一句话解释：调用结巴分词从文本中提取关键词，并手动把关键词填入 Comments 中，供 DEVONthink 索引
