@@ -1,6 +1,16 @@
 DEVONthink 中文索引生成程序
 ===
 
+因为有了非常优雅的解决方案，这个项目短期内不会再更新了
+
+还请使用这个 Alfred Workflow: https://github.com/mpco/AlfredWorkflow-DEVONthink-Search
+
+@ringsaturn
+
+2018-11-30
+
+*****
+
 <!-- TOC -->
 
 - [使用须知](#使用须知)
